@@ -2,8 +2,8 @@ class PriorityQueue:
   def __init__(self):
     self.heap = []
 
-  def push(self, item, priority):
-    entry = (priority, item)
+  def push(self, item):
+    entry = (item, item)  # 아이템의 값 자체를 우선순위로 사용
     self.heap.append(entry)
     self._sift_up(len(self.heap) - 1)
 
@@ -35,11 +35,11 @@ class PriorityQueue:
       smallest = index
 
       if left_child_index < len(self.heap) and \
-          self.heap[left_child_index][0] > self.heap[smallest][0]:
+          self.heap[left_child_index][0] < self.heap[smallest][0]:
         smallest = left_child_index
 
       if right_child_index < len(self.heap) and \
-          self.heap[right_child_index][0] > self.heap[smallest][0]:
+          self.heap[right_child_index][0] < self.heap[smallest][0]:
         smallest = right_child_index
 
       if smallest != index:
